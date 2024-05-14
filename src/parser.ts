@@ -58,6 +58,21 @@ export class Parser {
 				}
 				last._[attribute.name] = attribute.value;
 			};
+			this._parser.onopencdata = function () {
+				const last = scope[scope.length - 1];
+				if(last["#"] === undefined) {
+					last["#"] = "";
+				}
+				last["#"] = "<![CDATA["
+			}
+			this._parser.oncdata = function (cdata) {
+				const last = scope[scope.length - 1];
+				last["#"] += cdata;
+			}
+			this._parser.onclosecdata = function () {
+				const last = scope[scope.length - 1];
+				last["#"] += "]]>"
+			}
 			this._parser.onend = function () {
 				resolve(scope[0]);
 			};
