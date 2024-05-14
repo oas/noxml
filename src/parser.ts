@@ -63,7 +63,7 @@ export class Parser {
 				if(last["#"] === undefined) {
 					last["#"] = "";
 				}
-				last["#"] = "<![CDATA["
+				last["#"] += "<![CDATA["
 			}
 			this._parser.oncdata = function (cdata) {
 				const last = scope[scope.length - 1];
