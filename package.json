@@ -2,7 +2,8 @@
   "name": "noxml",
   "version": "0.1.0",
   "scripts": {
-    "test": "vitest --run ./test"
+    "test": "vitest --run ./test",
+    "build": "tsc"
   },
   "dependencies": {
     "sax": "1.3.0",

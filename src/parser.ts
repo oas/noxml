@@ -1,4 +1,4 @@
-import {SAXParser, parser as createParser} from "sax";
+import {parser as createParser, SAXParser} from "sax";
 
 export class Parser {
 	private _parser: SAXParser;
@@ -22,7 +22,7 @@ export class Parser {
 			};
 			this._parser.ontext = function (text) {
 				const last = scope[scope.length - 1];
-				if(last["#"] === undefined) {
+				if (last["#"] === undefined) {
 					last["#"] = "";
 				}
 				last["#"] += text;
@@ -34,16 +34,19 @@ export class Parser {
 					const last = scope[scope.length - 1];
 					if (last[node.name] === undefined) {
 						last[node.name] = element;
-					} else {
+					}
+					else {
 						if (Array.isArray(last[node.name])) {
 							last[node.name].push(element);
-						} else {
+						}
+						else {
 							last[node.name] = [last[node.name], element];
 						}
 					}
 
 					scope.push(element);
-				} else {
+				}
+				else {
 					scope.push({[node.name]: element});
 					scope.push(element);
 				}
@@ -60,7 +63,7 @@ export class Parser {
 			};
 			this._parser.onopencdata = function () {
 				const last = scope[scope.length - 1];
-				if(last["#"] === undefined) {
+				if (last["#"] === undefined) {
 					last["#"] = "";
 				}
 				last["#"] += "<![CDATA["
