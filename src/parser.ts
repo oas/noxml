@@ -33,20 +33,16 @@ export class Parser {
 				if (scope.length > 0) {
 					const last = scope[scope.length - 1];
 					if (last[node.name] === undefined) {
-						last[node.name] = element;
+						last[node.name] = [element];
 					}
 					else {
-						if (Array.isArray(last[node.name])) {
-							last[node.name].push(element);
-						}
-						else {
-							last[node.name] = [last[node.name], element];
-						}
+						last[node.name].push(element);
 					}
 
 					scope.push(element);
 				}
 				else {
+					// We don't need to put the root element into an array as it can't have any siblings.
 					scope.push({[node.name]: element});
 					scope.push(element);
 				}
