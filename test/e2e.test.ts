@@ -1,6 +1,5 @@
 import {assert, describe, it} from 'vitest';
-import {Parser} from "../src/parser";
-import {Builder} from "../src/builder";
+import {Builder, Parser} from "../src";
 
 const parser = new Parser();
 const builder = new Builder();

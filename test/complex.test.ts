@@ -1,6 +1,6 @@
 import {assert, describe, it} from 'vitest';
-import {Parser} from "../src/parser";
-import {Builder} from "../src/builder";
+import {Builder, Parser} from "../src";
+import {readResource} from "./runtime";
 
 const parser = new Parser();
 const builder = new Builder();
@@ -37,5 +37,13 @@ describe('end to end tests', () => {
 			'</xml>';
 
 		assert.strictEqual(actual, expected);
+	});
+
+	it('parsing a dmn model', async () => {
+		const content = readResource("0003-input-data-string-allowed-values.dmn");
+
+		const model = await parser.parse(content);
+		const output = builder.build(model);
+		assert.strictEqual(output, content);
 	});
 });
