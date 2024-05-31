@@ -5,7 +5,7 @@ export class Builder {
 	constructor() {
 	}
 
-	build(json: string): string {
+	build(json: any): string {
 		const root = create({version: '1.0', encoding: 'UTF-8', standalone: true});
 
 		function build(parent: XMLBuilder, node: any) {
