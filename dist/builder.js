@@ -23,6 +23,10 @@ class Builder {
                 }
                 else {
                     const child = node[key];
+                    // The value can be undefined. We can't map that to XML, so we ignore it.
+                    if (child === undefined) {
+                        continue;
+                    }
                     if (Array.isArray(child)) {
                         for (const element of child) {
                             unorderedChildren.push({
