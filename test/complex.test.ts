@@ -21,8 +21,8 @@ describe('end to end tests', () => {
 		assert.strictEqual(json.xml.foo[1]["#"], '3');
 		assert.strictEqual(json.xml.foo[0]["@"] < json.xml.foo[1]["@"], true); // The first foo should be before the second foo.
 
-		assert.strictEqual(Array.isArray(json.xml.bar), false);
-		assert.strictEqual(json.xml.bar["#"], '2');
+		assert.strictEqual(Array.isArray(json.xml.bar), true);
+		assert.strictEqual(json.xml.bar[0]["#"], '2');
 
 		json.xml.foo.push({"#": "4"});
 
